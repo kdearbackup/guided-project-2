@@ -27,7 +27,6 @@ function Character() {
 
         console.log(id)
 
-        // Filter the data to find the object with id = 1
         const itemWithId1 = json.find(item => item.id === id); 
         setData(itemWithId1); 
       } catch (error) {
@@ -115,7 +114,11 @@ function Character() {
   }
   
 
+  const homeworldLink = `/planets/${data.homeworld}`
+
   return (
+
+    
 
     <>
       <div>
@@ -126,7 +129,7 @@ function Character() {
         <div className="card">Born: {data.birth_year}</div>
 
         <h2>Homeworld</h2>
-        <div className="card">: {planet?.name} (Need to implement)</div>
+        <div className="card"><Link to={homeworldLink} > {planet.name}</Link></div>
         <h2>Films Appeared In</h2>
         <div className="card">(Need to implement)</div>
 

@@ -5,6 +5,8 @@ import './App.css';
 import { useState } from 'react'
 import React from 'react'
 import Character from './components/Character'
+import Planet from './components/Planet';
+import Film from './components/Film';
 
 
 function App() {
@@ -13,6 +15,8 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="character/:id" element = {<Character />} />
+        <Route path="planets/:id" element = {<Planet />} />
+        <Route path="films/:id" element = {<Film />} />
       </Routes>
     </Router>
   );

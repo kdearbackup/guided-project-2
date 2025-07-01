@@ -129,8 +129,7 @@ function Character() {
         <div className="card">Born: {data.birth_year}</div>
 
         <h2>Homeworld</h2>
-        <div className="card"><Link to={homeworldLink} >Homeworld Id: {data.homeworld} (Need to implement)</Link></div>
-        <div className="card">: {planet?.name} (Need to implement)</div>
+        <div className="card"><Link to={homeworldLink} > {planet.name}</Link></div>
         <h2>Films Appeared In</h2>
         <div className="card">(Need to implement)</div>
 

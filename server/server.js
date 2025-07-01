@@ -153,7 +153,7 @@ app.get('/api/characters/:id/films', async (req, res) => {
         const client = await MongoClient.connect(url);
         const db = client.db(dbName);
         const collection = db.collection(collFilmChars)
-        const result = await collection.find({ film_id: id }).toArray();
+        const result = await collection.find({ character_id: id }).toArray();
         if (result){
             res.status(200).send(result);
         }else {
@@ -162,7 +162,7 @@ app.get('/api/characters/:id/films', async (req, res) => {
     } catch (err) {
         console.error("Error:", err);
         res.status(500).send("Could not load data for characters page");
-    }
+    }W
 });
 //Path and input data for planets/:id/films
 app.get('/api/planets/:id/films', async (req, res) => {

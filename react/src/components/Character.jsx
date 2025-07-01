@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route,  useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import "../App.css"
 
 
 function Character() {
@@ -38,23 +39,34 @@ function Character() {
     //return <div>Loading...</div>; // Display loading state
   //}
 
+  if (!data){
+    return (
+      <>
+      <div>
+        <h1>No data found</h1>
+        <div className="backCard"><Link to= "/"> Back </Link></div>
+      </div>
+      </>
+    )
+  }
+
   return (
 
     <>
       <div>
-        <h1>{data.name} </h1>
+        <h1 >{data.name} </h1>
 
-        <h3>Height: {data.height}cm</h3>
-        <h3>Mass: {data.mass}kg</h3>
-        <h3>Born: {data.birth_year}</h3>
+        <div className="card">Height: {data.height}cm</div>
+        <div className="card">Mass: {data.mass}kg</div>
+        <div className="card">Born: {data.birth_year}</div>
 
         <h2>Homeworld</h2>
-        <h3>Homeworld Id: {data.homeworld} (Need to implement)</h3>
-        <h2>Films Appeaed In</h2>
-        <h3>(Need to implement)</h3>
+        <div className="card">Homeworld Id: {data.homeworld} (Need to implement)</div>
+        <h2>Films Appeared In</h2>
+        <div className="card">(Need to implement)</div>
 
 
-        <h3><Link to= "/">Go Back to Main Page</Link></h3>
+        <div className="backCard"><Link to= "/"> Back </Link></div>
       </div>
     </>
   )

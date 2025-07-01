@@ -4,12 +4,12 @@ import { Link } from 'react-router-dom';
 import "../App.css"
 
 
-function Character() {
+function Film() {
   const [data, setData] = useState(0)
   let { id } = useParams();
   id = id.replace(/:/g, "")
   id = parseInt(id)
-  const URL  = `http://localhost:3000/api/characters`
+  const URL  = `http://localhost:3000/api/films`
 
   useEffect(() => {
     const fetchData = async () => {
@@ -22,10 +22,11 @@ function Character() {
 
         console.log(json)
 
-        console.log(id)
+        console.log(json[id])
 
-        const itemWithId1 = json.find(item => item.id === id); 
-        setData(itemWithId1); 
+        const itemWithId = json[id]
+        //json.find(item => item.id === id); 
+        setData(itemWithId); 
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -49,25 +50,19 @@ function Character() {
     )
   }
 
-  const homeworldLink = `/planets/${data.homeworld}`
-
   return (
-
-    
 
     <>
       <div>
-        <h1 >{data.name} </h1>
+        <h1 >{data.title} </h1>
 
-        <div className="card">Height: {data.height}cm</div>
-        <div className="card">Mass: {data.mass}kg</div>
-        <div className="card">Born: {data.birth_year}</div>
+        <h2>Description</h2>
+        <p>{data.opening_crawl}</p>
+        <h2>Director: {data.director}</h2>
+        <h2>Release Date: {data.release_date}</h2>
 
-        <h2>Homeworld</h2>
-        <div className="card"><Link to={homeworldLink} >Homeworld Id: {data.homeworld} (Need to implement)</Link></div>
-        <h2>Films Appeared In</h2>
-        <div className="card">(Need to implement)</div>
-
+        <h2>Appearing Characters</h2>
+    
 
         <div className="backCard"><Link to= "/"> Back </Link></div>
       </div>
@@ -75,4 +70,4 @@ function Character() {
   )
 }
 
-export default Character
+export default Film

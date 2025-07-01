@@ -4,12 +4,12 @@ import { Link } from 'react-router-dom';
 import "../App.css"
 
 
-function Character() {
+function Planet() {
   const [data, setData] = useState(0)
   let { id } = useParams();
   id = id.replace(/:/g, "")
   id = parseInt(id)
-  const URL  = `http://localhost:3000/api/characters`
+  const URL  = `http://localhost:3000/api/planets`
 
   useEffect(() => {
     const fetchData = async () => {
@@ -49,24 +49,16 @@ function Character() {
     )
   }
 
-  const homeworldLink = `/planets/${data.homeworld}`
-
   return (
-
-    
 
     <>
       <div>
         <h1 >{data.name} </h1>
 
-        <div className="card">Height: {data.height}cm</div>
-        <div className="card">Mass: {data.mass}kg</div>
-        <div className="card">Born: {data.birth_year}</div>
-
-        <h2>Homeworld</h2>
-        <div className="card"><Link to={homeworldLink} >Homeworld Id: {data.homeworld} (Need to implement)</Link></div>
-        <h2>Films Appeared In</h2>
-        <div className="card">(Need to implement)</div>
+        <h2>Facts</h2>
+        <div className="card">Climate: {data.climate}</div>
+        <div className="card">Diameter: {data.diameter}</div>
+        <div className="card">Population: {data.population}</div>
 
 
         <div className="backCard"><Link to= "/"> Back </Link></div>
@@ -75,4 +67,4 @@ function Character() {
   )
 }
 
-export default Character
+export default Planet

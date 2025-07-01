@@ -25,14 +25,14 @@ function Character() {
 
         // Filter the data to find the object with id = 1
         const itemWithId1 = json.find(item => item.id === id); 
-        setData(itemWithId1); // Update state with the found item
+        setData(itemWithId1); 
       } catch (error) {
         console.error("Error fetching data:", error);
       }
     };
 
-    fetchData(); // Call the async function to fetch data
-  }, []); // Empty dependency array ensures this runs only once on mount
+    fetchData(); 
+  }, []); 
 
   //if (!data) {
     //return <div>Loading...</div>; // Display loading state
@@ -42,7 +42,17 @@ function Character() {
 
     <>
       <div>
-        <h1> About Page for character {data.name} </h1>
+        <h1>{data.name} </h1>
+
+        <h3>Height: {data.height}cm</h3>
+        <h3>Mass: {data.mass}kg</h3>
+        <h3>Born: {data.birth_year}</h3>
+
+        <h2>Homeworld</h2>
+        <h3>Homeworld Id: {data.homeworld} (Need to implement)</h3>
+        <h2>Films Appeaed In</h2>
+        <h3>(Need to implement)</h3>
+
 
         <h3><Link to= "/">Go Back to Main Page</Link></h3>
       </div>

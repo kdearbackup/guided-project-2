@@ -1,6 +1,7 @@
 import CharacterCard from "./characterCard";
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import '../App.css';
 
 
 const CharacterContainer = () => {
@@ -26,7 +27,7 @@ const CharacterContainer = () => {
       }, []);
 
     return (
-        <div>
+        <div  className="grid-container">
         {data.map(character => (
             <CharacterCard
               key={character.id} 

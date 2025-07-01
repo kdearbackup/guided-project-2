@@ -162,7 +162,7 @@ app.get('/api/characters/:id/films', async (req, res) => {
     } catch (err) {
         console.error("Error:", err);
         res.status(500).send("Could not load data for characters page");
-    }W
+    }
 });
 //Path and input data for planets/:id/films
 app.get('/api/planets/:id/films', async (req, res) => {

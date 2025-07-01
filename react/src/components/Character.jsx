@@ -8,6 +8,7 @@ function Character() {
   const [data, setData] = useState(0)
   const [planet, setPlanetData] = useState(0)
   const [film, setFilmData] = useState(0)
+  const [filmNames, setFilmNameData] = useState([])
   let { id } = useParams();
   id = id.replace(/:/g, "")
   id = parseInt(id)
@@ -23,9 +24,9 @@ function Character() {
         }
         const json = await response.json();
 
-        console.log(json)
+        //console.log(json)
 
-        console.log(id)
+        //console.log(id)
 
         const itemWithId1 = json.find(item => item.id === id); 
         setData(itemWithId1); 
@@ -39,7 +40,7 @@ function Character() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        console.log(data)
+        //console.log(data)
         const URL2 = `http://localhost:3000/api/planets/${data.homeworld}`
         const response = await fetch(URL2);
          
@@ -48,9 +49,9 @@ function Character() {
         }
         const json = await response.json();
 
-        console.log(json)
+        //console.log(json)
 
-        console.log(id)
+        //console.log(id)
 
         
         setPlanetData(json); 
@@ -64,7 +65,7 @@ function Character() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        console.log(data)
+        //console.log(data)
         const URL3 = `http://localhost:3000/api/characters/${id}/films`
         const response = await fetch(URL3);
          
@@ -73,9 +74,9 @@ function Character() {
         }
         const json = await response.json();
 
-        console.log(json)
+        //console.log(json)
 
-        console.log(id)
+        //console.log(id)
 
         
         setFilmData(json); 
@@ -86,6 +87,35 @@ function Character() {
 
     fetchData(); 
   }, [data]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const filmArray = []
+        for (let i = 0; i < film.length; i++){
+          //console.log(film[i])
+          const URL3 = `http://localhost:3000/api/films/${film[i].film_id}`
+          const response = await fetch(URL3); 
+          if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+          }
+          const json = await response.json();
+
+          //console.log(json)
+          filmArray.push(json)
+      }
+      
+      //console.log(filmArray)
+      setFilmNameData(filmArray)
+    } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchData(); 
+  }, [data]);
+
+  
   
 
   //if (!data) {
@@ -115,6 +145,8 @@ function Character() {
   
 
   const homeworldLink = `/planets/${data.homeworld}`
+  const filmLink = `/films/${film.film_id}`
+  //GET ID PROPERLY
 
   return (
 
@@ -131,7 +163,14 @@ function Character() {
         <h2>Homeworld</h2>
         <div className="card"><Link to={homeworldLink} > {planet.name}</Link></div>
         <h2>Films Appeared In</h2>
-        <div className="card">(Need to implement)</div>
+        
+        {filmNames.length > 0 && ( 
+          <div > 
+            {filmNames.map(film =>  (
+             <div><h3><Link to={`/films/${film.id -1 }`}>{film.title}</Link></h3></div>
+            ))}
+          </div>
+        )}
 
 
         <div className="backCard"><Link to= "/"> Back </Link></div>
